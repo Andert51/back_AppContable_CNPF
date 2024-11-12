@@ -4,6 +4,7 @@ class clientInterface {
     deleteClient(id){}
     getAllClients(){}
     getClientById(id){}
+    getClientByUsername(username){}
 }
 
 export default clientInterface
