@@ -1,5 +1,5 @@
 import express from 'express'
-import authMiddleware from '../middleware/authMiddleware'
+import authMiddleware from '../middleware/authMiddleware.js'
 import { check } from 'express-validator'
 import multer from 'multer'
 
@@ -10,7 +10,7 @@ import {
     getAllClients,
     getClientById,
     getClientByUsername
-} from '../controller/clientController'
+} from '../controller/clientController.js'
 
 const upload = multer ({ storage: multer.memoryStorage() })
 const router = express.Router()

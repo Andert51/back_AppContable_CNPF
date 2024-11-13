@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import fs from 'fs'
 import path from 'path'
-import clientRepo from '../logic/clientRepo'
-import clientModel from '../models/clientModel'
+import clientRepo from '../logic/clientRepo.js'
+import clientModel from '../models/clientModel.js'
 
 const ClientRepo =  new clientRepo()
 const secret = process.env.JWT_SECRET

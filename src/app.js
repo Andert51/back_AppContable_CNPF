@@ -1,8 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import errorHandlerMiddleware from './middleware/errorHandlerMiddleware'
-import rateLimitMiddleware from './middleware/rateLimitMiddleware'
-import routes from './routes/index'
+import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js'
+import rateLimitMiddleware from './middleware/rateLimitMiddleware.js'
+import routes from './routes/index.js'
 import cors from 'cors'
 
 dotenv.config()

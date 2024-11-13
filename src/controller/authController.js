@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
-import clientRepo from '../logic/clientRepo'
+import clientRepo from '../logic/clientRepo.js'
 const ClientRepo = new clientRepo()
 
 export const login = async (req, res) => {
