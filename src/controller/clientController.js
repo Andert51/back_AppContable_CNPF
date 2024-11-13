@@ -5,10 +5,10 @@ const ClientService = new clientService()
 const addClient = async (req, res) => {
     console.log('@body', req)
     try {
-        const Id = await ClientService.addClient(req.body, req.file)
+        const id = await ClientService.addClient(req.body, req.file)
         res.status(201).json({
             success: true,
-            clientId: Id
+            clientId: id
         })
     } catch (error){
         res.status(400).json({

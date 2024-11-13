@@ -48,25 +48,25 @@ export const login = async (req, res) => {
     }
 }
 
-export const getClient = async (req, res) => {
+export const getUser = async (req, res) => {
     try {
-        const clientId = req.user.clientId
-        const user = await ClientRepo.getClientById(clientId)
+        const userId = req.user.userId
+        const user = await ClientRepo.getClientById(userId)
 
         if (!user){
             return res.status(404).json({
                 success: false,
-                message: 'User not found'
+                message: 'Client not found'
             })
         }
 
-        const { password, ...userWithoutPassword } = user
+        const { password, ...userWithoutPassword} =  user
         res.json(userWithoutPassword)
     } catch (error) {
         console.error(error)
         res.status(500).json({
             success: false,
-            message: 'Error obtaining user' 
+            message: 'Error obtaining client' 
         })
     }
 }

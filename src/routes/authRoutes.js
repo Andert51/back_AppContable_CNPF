@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { login, logout, getClient } from '../controller/authController.js'
+import { login, logout, getUser } from '../controller/authController.js'
 import { check } from 'express-validator'
 import authMiddleware from "../middleware/authMiddleware.js";
 
@@ -15,6 +15,6 @@ router.post(
 )
 
 router.post('/logout', logout)
-router.get('/client', authMiddleware, getClient)
+router.get('/user', authMiddleware, getUser)
 
 export default router
