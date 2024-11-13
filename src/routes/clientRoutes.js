@@ -17,7 +17,7 @@ const router = express.Router()
 
 router.post(
     '/add',
-    //middleware
+    //authMiddleware,
     upload.single('image'),
     [
         check('name').notEmpty().withMessage('Name is required'),
@@ -27,10 +27,10 @@ router.post(
     addClient
 )
 
-router.put('/update/:id', authMiddleware, upload.single('image'), updateClient)
-router.delete('/delete/:id', authMiddleware, deleteClient)
-router.get('/all', authMiddleware, getAllClients)
-router.get('/id/:id', authMiddleware, getClientById)
-router.get('/username/:username', authMiddleware, getClientByUsername)
+router.put('/update/:id', /*authMiddleware,*/ upload.single('image'), updateClient)
+router.delete('/delete/:id', /*authMiddleware,*/ deleteClient)
+router.get('/all', /*authMiddleware,*/ getAllClients)
+router.get('/id/:id', /*authMiddleware,*/ getClientById)
+router.get('/username/:username', /*authMiddleware,*/ getClientByUsername)
 
 export default router

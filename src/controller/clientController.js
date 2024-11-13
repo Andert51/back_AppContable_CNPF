@@ -66,8 +66,8 @@ const getAllClients = async (req, res) => {
 
 const getClientById = async (req, res) => {
     try {
-        const Id = req.params.id
-        const client = ClientService.getEmployeeById(Id)
+        const id = req.params.id
+        const client = ClientService.getClientById(id)
         if(!client){
             res.status(404).json({
                 success: false,
@@ -91,7 +91,7 @@ const getClientByUsername = async (req, res) => {
     console.log('@body req =>', req.body, req.params)
     try {
         const username = req.params.username
-        const client = ClientService.getEmployeeByUsername(username)
+        const client = ClientService.getClientByUsername(username)
         if(!client){
             res.status(404).json({
                 success: false,
