@@ -20,8 +20,8 @@ const addClient = async (req, res) => {
 
 const updateClient = async (req, res) => {
     try {
-        const Id = req.params.id
-        await ClientService.updateClient(Id, req.body, req.file)
+        const id = req.params.id
+        await ClientService.updateClient(id, req.body, req.file)
         res.status(201).json({
             success:true
         })
@@ -67,7 +67,8 @@ const getAllClients = async (req, res) => {
 const getClientById = async (req, res) => {
     try {
         const id = req.params.id
-        const client = ClientService.getClientById(id)
+        console.log('@id', id)
+        const client = await ClientService.getClientById(id)
         if(!client){
             res.status(404).json({
                 success: false,
@@ -91,7 +92,7 @@ const getClientByUsername = async (req, res) => {
     console.log('@body req =>', req.body, req.params)
     try {
         const username = req.params.username
-        const client = ClientService.getClientByUsername(username)
+        const client = await ClientService.getClientByUsername(username)
         if(!client){
             res.status(404).json({
                 success: false,

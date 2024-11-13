@@ -42,7 +42,7 @@ class clientService {
 
     async updateClient(id, data, file){
         const existClient = await ClientRepo.getClientById(id)
-        if(existClient){
+        if(!existClient){
             throw new Error('Client not found')
         }
 
