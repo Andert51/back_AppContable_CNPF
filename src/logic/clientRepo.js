@@ -50,7 +50,7 @@ class clientRepo {
             return null
         }
         const data = doc.data()
-          console.log('@data => ', data)
+        console.log('@data => ', data)
         return new clientModel(
             doc.id,
             data.name,
