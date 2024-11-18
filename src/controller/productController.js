@@ -18,3 +18,18 @@ const addProduct = async (req, res) => {
     }
 }
 
+const updateProduct = async (req, res) => {
+    try {
+        const id = req.params.id
+        await ProductService.updateProduct(id, req.body, req.file)
+        res.status(201).json({
+            success: true
+        })
+    } catch (error){
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
