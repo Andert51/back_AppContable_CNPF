@@ -112,12 +112,45 @@ const getClientByUsername = async (req, res) => {
     }
 }
 
+const getClientsByCity = async (req, res) => {
+    try {
+        const city = req.params.city
+        const clients = await ClientService.getClientsByCity(city)
+        res.status(201).json({
+            success: true,
+            clients: clients
+        })
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+const getClientsByAddress = async (req, res) => {
+    try {
+        const address = req.params.address
+        const clients = await ClientService.getClientsByAddress(address)
+        res.status(201).json({
+            success: true,
+            clients: clients
+        })
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
 export {
     addClient,
     updateClient,
     deleteClient,
     getAllClients,
     getClientById,
-    getClientByUsername
+    getClientByUsername,
+    getClientsByCity,
+    getClientsByAddress
 }
-

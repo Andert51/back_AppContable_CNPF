@@ -8,7 +8,10 @@ class transactionRepo {
             productId: data.productId,
             quantity: data.quantity,
             totalPrice: data.totalPrice,
-            date: data.date
+            date: data.date,
+            paymentMethod: data.paymentMethod,
+            totalAmount: data.totalAmount,
+            transactionStatus: data.transactionStatus
         })
         return transaction.id
     }
@@ -32,7 +35,10 @@ class transactionRepo {
                 data.productId,
                 data.quantity,
                 data.totalPrice,
-                data.date
+                data.date,
+                data.paymentMethod,
+                data.totalAmount,
+                data.transactionStatus
             ))
         })
         return transactions
@@ -50,8 +56,74 @@ class transactionRepo {
             data.productId,
             data.quantity,
             data.totalPrice,
-            data.date
+            data.date,
+            data.paymentMethod,
+            data.totalAmount,
+            data.transactionStatus
         )
+    }
+
+    async getTransactionsByClientId(clientId) {
+        const transactions = await db.collection('transactions').where('clientId', '==', clientId).get()
+        if (transactions.empty) {
+            return []
+        }
+        return transactions.docs.map(doc => {
+            const data = doc.data()
+            return new transactionModel(
+                doc.id,
+                data.clientId,
+                data.productId,
+                data.quantity,
+                data.totalPrice,
+                data.date,
+                data.paymentMethod,
+                data.totalAmount,
+                data.transactionStatus
+            )
+        })
+    }
+
+    async getTransactionsByProductId(productId) {
+        const transactions = await db.collection('transactions').where('productId', '==', productId).get()
+        if (transactions.empty) {
+            return []
+        }
+        return transactions.docs.map(doc => {
+            const data = doc.data()
+            return new transactionModel(
+                doc.id,
+                data.clientId,
+                data.productId,
+                data.quantity,
+                data.totalPrice,
+                data.date,
+                data.paymentMethod,
+                data.totalAmount,
+                data.transactionStatus
+            )
+        })
+    }
+
+    async getTransactionsByStatus(status) {
+        const transactions = await db.collection('transactions').where('transactionStatus', '==', status).get()
+        if (transactions.empty) {
+            return []
+        }
+        return transactions.docs.map(doc => {
+            const data = doc.data()
+            return new transactionModel(
+                doc.id,
+                data.clientId,
+                data.productId,
+                data.quantity,
+                data.totalPrice,
+                data.date,
+                data.paymentMethod,
+                data.totalAmount,
+                data.transactionStatus
+            )
+        })
     }
 }
 

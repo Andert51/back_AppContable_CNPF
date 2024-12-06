@@ -20,6 +20,11 @@ class productService {
             data.stock,
             data.category,
             data.image,
+            data.brand,
+            data.weight,
+            data.dimensions,
+            data.color,
+            data.material
         )
 
         const productId = await ProductRepo.addProduct(newProduct)
@@ -66,6 +71,18 @@ class productService {
 
     async getProductByName(name){
         return await ProductRepo.getProductByName(name)
+    }
+
+    async getProductsByCategory(category){
+        return await ProductRepo.getProductsByCategory(category)
+    }
+
+    async getProductsByBrand(brand){
+        return await ProductRepo.getProductsByBrand(brand)
+    }
+
+    async getProductsByPriceRange(minPrice, maxPrice){
+        return await ProductRepo.getProductsByPriceRange(minPrice, maxPrice)
     }
 }
 

@@ -9,7 +9,9 @@ import {
     deleteClient,
     getAllClients,
     getClientById,
-    getClientByUsername
+    getClientByUsername,
+    getClientsByCity,
+    getClientsByAddress
 } from '../controller/clientController.js'
 
 const upload = multer ({ storage: multer.memoryStorage() })
@@ -32,5 +34,7 @@ router.delete('/delete/:id', /*authMiddleware,*/ deleteClient)
 router.get('/all', /*authMiddleware,*/ getAllClients)
 router.get('/id/:id', /*authMiddleware,*/ getClientById)
 router.get('/username/:username', /*authMiddleware,*/ getClientByUsername)
+router.get('/city/:city', /*authMiddleware,*/ getClientsByCity)
+router.get('/address/:address', /*authMiddleware,*/ getClientsByAddress)
 
 export default router

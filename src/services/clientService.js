@@ -27,7 +27,9 @@ class clientService {
             data.info,
             hashedPassword,
             data.role,
-            null
+            null,
+            data.address,
+            data.city
         )
 
         const clientId = await ClientRepo.addClient(newClient)
@@ -80,7 +82,13 @@ class clientService {
         return await ClientRepo.getClientByUsername(username)
     }
 
+    async getClientsByCity(city){
+        return await ClientRepo.getClientsByCity(city)
+    }
 
+    async getClientsByAddress(address){
+        return await ClientRepo.getClientsByAddress(address)
+    }
 }
 
 export default clientService

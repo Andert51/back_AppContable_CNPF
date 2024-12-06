@@ -11,7 +11,10 @@ class transactionService {
             data.productId,
             data.quantity,
             data.totalPrice,
-            data.date
+            data.date,
+            data.paymentMethod,
+            data.totalAmount,
+            data.transactionStatus
         )
         return await TransactionRepo.addTransaction(newTransaction)
     }
@@ -30,6 +33,18 @@ class transactionService {
 
     async getTransactionById(id) {
         return await TransactionRepo.getTransactionById(id)
+    }
+
+    async getTransactionsByClientId(clientId) {
+        return await TransactionRepo.getTransactionsByClientId(clientId)
+    }
+
+    async getTransactionsByProductId(productId) {
+        return await TransactionRepo.getTransactionsByProductId(productId)
+    }
+
+    async getTransactionsByStatus(status) {
+        return await TransactionRepo.getTransactionsByStatus(status)
     }
 }
 

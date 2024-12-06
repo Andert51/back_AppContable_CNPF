@@ -11,7 +11,9 @@ class clientRepo {
             info: data.info,
             password: data.password,
             role: data.role,
-            image: data.image
+            image: data.image,
+            address: data.address,
+            city: data.city
         })
         return client.id
     }
@@ -38,7 +40,9 @@ class clientRepo {
                 data.info,
                 data.password,
                 data.role,
-                data.image
+                data.image,
+                data.address,
+                data.city
             ))
         })
         return clients
@@ -50,7 +54,6 @@ class clientRepo {
             return null
         }
         const data = doc.data()
-        console.log('@data => ', data)
         return new clientModel(
             doc.id,
             data.name,
@@ -60,7 +63,9 @@ class clientRepo {
             data.info,
             data.password,
             data.role,
-            data.image
+            data.image,
+            data.address,
+            data.city
         )
     }
 
@@ -80,8 +85,56 @@ class clientRepo {
             data.info,
             data.password,
             data.role,
-            data.image
+            data.image,
+            data.address,
+            data.city
         )
+    }
+
+    async getClientsByCity(city){
+        const clients = await db.collection('clients_CNPF').where('city', '==', city).get()
+        if(clients.empty){
+            return []
+        }
+        return clients.docs.map(doc => {
+            const data = doc.data()
+            return new clientModel(
+                doc.id,
+                data.name,
+                data.username,
+                data.email,
+                data.phone,
+                data.info,
+                data.password,
+                data.role,
+                data.image,
+                data.address,
+                data.city
+            )
+        })
+    }
+
+    async getClientsByAddress(address){
+        const clients = await db.collection('clients_CNPF').where('address', '==', address).get()
+        if(clients.empty){
+            return []
+        }
+        return clients.docs.map(doc => {
+            const data = doc.data()
+            return new clientModel(
+                doc.id,
+                data.name,
+                data.username,
+                data.email,
+                data.phone,
+                data.info,
+                data.password,
+                data.role,
+                data.image,
+                data.address,
+                data.city
+            )
+        })
     }
 }
 

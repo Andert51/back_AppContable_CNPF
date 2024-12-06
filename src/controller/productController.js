@@ -48,7 +48,7 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-const getAllproducts = async (req, res) => {
+const getAllProducts = async (req, res) => {
     try {
         const products = await ProductService.getAllProducts()
         res.status(201).json({
@@ -108,11 +108,62 @@ const getProductByName = async (req, res) => {
     }
 }
 
+const getProductsByCategory = async (req, res) => {
+    try {
+        const category = req.params.category
+        const products = await ProductService.getProductsByCategory(category)
+        res.status(201).json({
+            success: true,
+            products: products
+        })
+    } catch (error){
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+const getProductsByBrand = async (req, res) => {
+    try {
+        const brand = req.params.brand
+        const products = await ProductService.getProductsByBrand(brand)
+        res.status(201).json({
+            success: true,
+            products: products
+        })
+    } catch (error){
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+const getProductsByPriceRange = async (req, res) => {
+    try {
+        const { minPrice, maxPrice } = req.query
+        const products = await ProductService.getProductsByPriceRange(Number(minPrice), Number(maxPrice))
+        res.status(201).json({
+            success: true,
+            products: products
+        })
+    } catch (error){
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
 export {
     addProduct,
     updateProduct,
     deleteProduct,
-    getAllproducts,
+    getAllProducts,
     getProductById,
-    getProductByName
+    getProductByName,
+    getProductsByCategory,
+    getProductsByBrand,
+    getProductsByPriceRange
 }

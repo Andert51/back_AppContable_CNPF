@@ -7,9 +7,12 @@ import {
     addProduct,
     updateProduct,
     deleteProduct,
-    getAllproducts,
+    getAllProducts,
     getProductById,
-    getProductByName
+    getProductByName,
+    getProductsByCategory,
+    getProductsByBrand,
+    getProductsByPriceRange
 } from '../controller/productController.js'
 
 const upload = multer ({ storage: multer.memoryStorage() })
@@ -29,9 +32,11 @@ router.post(
 
 router.put('/update/:id', /*authMiddleware,*/ upload.single('image'), updateProduct)
 router.delete('/delete/:id', /*authMiddleware,*/ deleteProduct)
-router.get('/all', /*authMiddleware,*/ getAllproducts)
+router.get('/all', /*authMiddleware,*/ getAllProducts)
 router.get('/id/:id', /*authMiddleware,*/ getProductById)
 router.get('/name/:name', /*authMiddleware,*/ getProductByName)
+router.get('/category/:category', /*authMiddleware,*/ getProductsByCategory)
+router.get('/brand/:brand', /*authMiddleware,*/ getProductsByBrand)
+router.get('/price', /*authMiddleware,*/ getProductsByPriceRange)
 
 export default router
-

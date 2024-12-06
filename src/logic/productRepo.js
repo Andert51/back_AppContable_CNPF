@@ -9,7 +9,12 @@ class productRepo {
             description: data.description,
             stock: data.stock,
             category: data.category,
-            image: data.image
+            image: data.image,
+            brand: data.brand,
+            weight: data.weight,
+            dimensions: data.dimensions,
+            color: data.color,
+            material: data.material
         })
         return product.id
     }
@@ -34,7 +39,12 @@ class productRepo {
                 data.description,
                 data.stock,
                 data.category,
-                data.image
+                data.image,
+                data.brand,
+                data.weight,
+                data.dimensions,
+                data.color,
+                data.material
             ))
         })
         return products
@@ -46,7 +56,6 @@ class productRepo {
             return null
         }
         const data = doc.data()
-        console.log('@data =>', data)
         return new productModel(
             doc.id,
             data.name,
@@ -54,7 +63,12 @@ class productRepo {
             data.description,
             data.stock,
             data.category,
-            data.image
+            data.image,
+            data.brand,
+            data.weight,
+            data.dimensions,
+            data.color,
+            data.material
         )
     }
 
@@ -72,8 +86,85 @@ class productRepo {
             data.description,
             data.stock,
             data.category,
-            data.image
+            data.image,
+            data.brand,
+            data.weight,
+            data.dimensions,
+            data.color,
+            data.material
         )
+    }
+
+    async getProductsByCategory(category){
+        const products = await db.collection('products_CNPF').where('category', '==', category).get()
+        if(products.empty){
+            return []
+        }
+        return products.docs.map(doc => {
+            const data = doc.data()
+            return new productModel(
+                doc.id,
+                data.name,
+                data.price,
+                data.description,
+                data.stock,
+                data.category,
+                data.image,
+                data.brand,
+                data.weight,
+                data.dimensions,
+                data.color,
+                data.material
+            )
+        })
+    }
+
+    async getProductsByBrand(brand){
+        const products = await db.collection('products_CNPF').where('brand', '==', brand).get()
+        if(products.empty){
+            return []
+        }
+        return products.docs.map(doc => {
+            const data = doc.data()
+            return new productModel(
+                doc.id,
+                data.name,
+                data.price,
+                data.description,
+                data.stock,
+                data.category,
+                data.image,
+                data.brand,
+                data.weight,
+                data.dimensions,
+                data.color,
+                data.material
+            )
+        })
+    }
+
+    async getProductsByPriceRange(minPrice, maxPrice){
+        const products = await db.collection('products_CNPF').where('price', '>=', minPrice).where('price', '<=', maxPrice).get()
+        if(products.empty){
+            return []
+        }
+        return products.docs.map(doc => {
+            const data = doc.data()
+            return new productModel(
+                doc.id,
+                data.name,
+                data.price,
+                data.description,
+                data.stock,
+                data.category,
+                data.image,
+                data.brand,
+                data.weight,
+                data.dimensions,
+                data.color,
+                data.material
+            )
+        })
     }
 }
 
