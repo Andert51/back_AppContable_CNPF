@@ -38,7 +38,7 @@ class clientService {
             const image = `${clientId}_image.png`
             const imagePath = path.join('src', 'clientImages', image)
             fs.writeFileSync(imagePath, file.buffer)
-            await ClientRepo.updateClient(clientId, {image:image})
+            await ClientRepo.updateClient(clientId, {image})
         }
     }
 
