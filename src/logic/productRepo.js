@@ -9,11 +9,11 @@ class productRepo {
             description: data.description,
             stock: data.stock,
             category: data.category,
-            image: data.image,
+            image: data.image || null,
             brand: data.brand,
             weight: data.weight,
             dimensions: data.dimensions,
-            color: data.color,
+            color: data.color || '#FFFFFF',
             material: data.material
         })
         return product.id

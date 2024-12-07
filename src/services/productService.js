@@ -19,7 +19,7 @@ class productService {
             data.description,
             data.stock,
             data.category,
-            data.image,
+            null,
             data.brand,
             data.weight,
             data.dimensions,
@@ -33,8 +33,10 @@ class productService {
             const image = `${productId}_image.png`
             const imagePath = path.join('src', 'productImages', image)
             fs.writeFileSync(imagePath, file.buffer)
-            await ProductRepo.updateProduct(productId, {image:image})
+            await ProductRepo.updateProduct(productId, {image})
         }
+        
+        return productId
     }
 
     async updateProduct(id, data, file){
